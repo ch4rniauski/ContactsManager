@@ -8,6 +8,21 @@ internal sealed class ContactEntityConfiguration : IEntityTypeConfiguration<Cont
 {
     public void Configure(EntityTypeBuilder<ContactEntity> builder)
     {
-        throw new NotImplementedException();
+        builder.HasKey(c => c.Id);
+
+        builder.Property(contact => contact.Name)
+            .IsRequired()
+            .HasMaxLength(200);
+
+        builder.Property(contact => contact.MobilePhone)
+            .IsRequired()
+            .HasMaxLength(20);
+
+        builder.Property(contact => contact.JobTitle)
+            .IsRequired()
+            .HasMaxLength(100);
+
+        builder.Property(contact => contact.BirthDate)
+            .IsRequired();
     }
 }

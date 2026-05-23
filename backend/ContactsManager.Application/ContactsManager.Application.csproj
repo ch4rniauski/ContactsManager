@@ -17,6 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Contracts\Repositories\" />
       <Folder Include="UseCases\CommandHandlers\Contact\" />
       <Folder Include="UseCases\Commands\Contact\" />
       <Folder Include="UseCases\Queries\Contact\" />
