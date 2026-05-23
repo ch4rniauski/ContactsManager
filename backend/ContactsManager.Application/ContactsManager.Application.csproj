@@ -10,4 +10,17 @@
       <ProjectReference Include="..\ContactsManager.Domain\ContactsManager.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="FluentValidation" Version="12.1.1" />
+      <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
+      <PackageReference Include="MediatR" Version="14.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="UseCases\CommandHandlers\Contact\" />
+      <Folder Include="UseCases\Commands\Contact\" />
+      <Folder Include="UseCases\Queries\Contact\" />
+      <Folder Include="UseCases\QueriyHandlers\Contact\" />
+    </ItemGroup>
+
 </Project>
