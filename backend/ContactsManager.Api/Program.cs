@@ -1,8 +1,11 @@
 using ContactsManager.Api.Extensions;
+using ContactsManager.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+
+builder.Services.AddContactsContextConfiguration(builder.Configuration);
 
 var app = builder.Build();
 

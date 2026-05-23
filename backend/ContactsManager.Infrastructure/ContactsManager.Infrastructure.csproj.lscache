@@ -56,10 +56,12 @@ TemporaryDependencyNodeTargetIdentifier=net10.0
 [sourceFiles]
 Configurations/ContactEntityConfiguration.cs
 ContactsContext.cs
+Extensions/ServiceCollectionExtensions.cs
 obj/Debug/net10.0/
  .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
  ContactsManager.Infrastructure.AssemblyInfo.cs
  ContactsManager.Infrastructure.GlobalUsings.g.cs
+Repositories/ContactRepository.cs
 
 [metadataReferences]
 ../

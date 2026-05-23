@@ -19,10 +19,10 @@ internal sealed class ContactEntityConfiguration : IEntityTypeConfiguration<Cont
             .HasMaxLength(20);
 
         builder.Property(contact => contact.JobTitle)
-            .IsRequired()
+            .IsRequired(false)
             .HasMaxLength(100);
 
         builder.Property(contact => contact.BirthDate)
-            .IsRequired();
+            .IsRequired(false);
     }
 }
