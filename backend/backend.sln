@@ -2,6 +2,12 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsManager.Api", "ContactsManager.Api\ContactsManager.Api.csproj", "{418FC8B0-6266-4BFA-A8C9-5549A75747D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsManager.Domain", "ContactsManager.Domain\ContactsManager.Domain.csproj", "{F305889D-01C4-4C01-9AFA-B0ED40208F09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsManager.Application", "ContactsManager.Application\ContactsManager.Application.csproj", "{B01CE07C-9FBD-49DE-90BF-BFADD03DAA5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsManager.Infrastructure", "ContactsManager.Infrastructure\ContactsManager.Infrastructure.csproj", "{A25B4812-1F45-44A7-BB0D-5C27359B68F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +18,17 @@ Global
 		{418FC8B0-6266-4BFA-A8C9-5549A75747D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{418FC8B0-6266-4BFA-A8C9-5549A75747D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{418FC8B0-6266-4BFA-A8C9-5549A75747D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F305889D-01C4-4C01-9AFA-B0ED40208F09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F305889D-01C4-4C01-9AFA-B0ED40208F09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F305889D-01C4-4C01-9AFA-B0ED40208F09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F305889D-01C4-4C01-9AFA-B0ED40208F09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B01CE07C-9FBD-49DE-90BF-BFADD03DAA5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B01CE07C-9FBD-49DE-90BF-BFADD03DAA5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B01CE07C-9FBD-49DE-90BF-BFADD03DAA5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B01CE07C-9FBD-49DE-90BF-BFADD03DAA5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A25B4812-1F45-44A7-BB0D-5C27359B68F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A25B4812-1F45-44A7-BB0D-5C27359B68F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A25B4812-1F45-44A7-BB0D-5C27359B68F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A25B4812-1F45-44A7-BB0D-5C27359B68F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
