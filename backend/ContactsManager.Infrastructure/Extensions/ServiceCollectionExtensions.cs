@@ -11,7 +11,7 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddContactsContextConfiguration(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<ContactsContext>(opt => 
-            opt.UseNpgsql(configuration.GetConnectionString("ContactsContext"))
+            opt.UseNpgsql(configuration.GetConnectionString("ContactsDb"))
         );
 
         services.AddScoped<IContactRepository, ContactRepository>();
