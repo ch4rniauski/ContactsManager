@@ -5,12 +5,15 @@ namespace ContactsManager.Api.Extensions;
 
 public static class ApplicationBuilderExtensions
 {
-    public static async Task ApplyMigrationsAsync(this IApplicationBuilder app)
+    extension(IApplicationBuilder app)
     {
-        await using var scope = app.ApplicationServices.CreateAsyncScope();
+        public async Task ApplyMigrationsAsync()
+        {
+            await using var scope = app.ApplicationServices.CreateAsyncScope();
 
-        await using var db = scope.ServiceProvider.GetRequiredService<ContactsContext>();
+            await using var db = scope.ServiceProvider.GetRequiredService<ContactsContext>();
 
-        await db.Database.MigrateAsync();
+            await db.Database.MigrateAsync();
+        }
     }
 }

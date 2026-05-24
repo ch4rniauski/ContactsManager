@@ -8,14 +8,17 @@ namespace ContactsManager.Infrastructure.Extensions;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddContactsContextConfiguration(this IServiceCollection services, IConfiguration configuration)
+    extension(IServiceCollection services)
     {
-        services.AddDbContext<ContactsContext>(opt => 
-            opt.UseNpgsql(configuration.GetConnectionString("ContactsDb"))
-        );
+        public IServiceCollection AddContactsContextConfiguration(IConfiguration configuration)
+        {
+            services.AddDbContext<ContactsContext>(opt => 
+                opt.UseNpgsql(configuration.GetConnectionString("ContactsDb"))
+            );
 
-        services.AddScoped<IContactRepository, ContactRepository>();
-        
-        return services;
+            services.AddScoped<IContactRepository, ContactRepository>();
+            
+            return services;
+        }
     }
 }

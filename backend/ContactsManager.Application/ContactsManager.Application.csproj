@@ -11,6 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="16.1.1" />
       <PackageReference Include="FluentValidation" Version="12.1.1" />
       <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
       <PackageReference Include="MediatR" Version="14.1.0" />
@@ -18,12 +19,10 @@
 
     <ItemGroup>
       <Folder Include="Contracts\Repositories\" />
-      <Folder Include="Dto\Contact\" />
       <Folder Include="UseCases\CommandHandlers\Contact\" />
       <Folder Include="UseCases\Commands\Contact\" />
       <Folder Include="UseCases\Queries\Contact\" />
       <Folder Include="UseCases\QueriyHandlers\Contact\" />
-      <Folder Include="Validators\Contact\" />
     </ItemGroup>
 
 </Project>

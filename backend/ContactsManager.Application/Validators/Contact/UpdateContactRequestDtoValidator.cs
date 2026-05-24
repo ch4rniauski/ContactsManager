@@ -1,11 +1,11 @@
-using ContactsManager.Domain.Entities;
+using ContactsManager.Application.Dto.Contact.Requests;
 using FluentValidation;
 
 namespace ContactsManager.Application.Validators.Contact;
 
-public sealed class ContactEntityValidator : AbstractValidator<ContactEntity>
+public sealed class UpdateContactRequestDtoValidator : AbstractValidator<UpdateContactRequestDto>
 {
-    public ContactEntityValidator()
+    public UpdateContactRequestDtoValidator()
     {
         RuleFor(contact => contact.Name)
             .NotEmpty()

@@ -9,7 +9,8 @@ builder.Services.AddControllers();
 builder.Services
     .AddContactsContextConfiguration(builder.Configuration)
     .AddMediatrConfiguration()
-    .AddValidationConfiguration();
+    .AddValidationConfiguration()
+    .AddAutoMapperConfiguration();
 
 var app = builder.Build();
 

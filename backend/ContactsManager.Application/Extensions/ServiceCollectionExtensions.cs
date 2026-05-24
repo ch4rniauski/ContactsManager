@@ -5,20 +5,30 @@ namespace ContactsManager.Application.Extensions;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddMediatrConfiguration(this IServiceCollection services)
+    extension (IServiceCollection services)
     {
-        services.AddMediatR(conf =>
+        public IServiceCollection AddMediatrConfiguration()
         {
-            conf.RegisterServicesFromAssembly(typeof(ServiceCollectionExtensions).Assembly);
-        });
+            services.AddMediatR(conf =>
+            {
+                conf.RegisterServicesFromAssembly(typeof(ServiceCollectionExtensions).Assembly);
+            });
         
-        return services;
-    }
+            return services;
+        }
 
-    public static IServiceCollection AddValidationConfiguration(this IServiceCollection services)
-    {
-        services.AddValidatorsFromAssembly(typeof(ServiceCollectionExtensions).Assembly);
+        public IServiceCollection AddValidationConfiguration()
+        {
+            services.AddValidatorsFromAssembly(typeof(ServiceCollectionExtensions).Assembly);
         
-        return services;
+            return services;
+        }
+    
+        public IServiceCollection AddAutoMapperConfiguration()
+        {
+            services.AddAutoMapper(_ => {}, typeof(ServiceCollectionExtensions).Assembly);
+        
+            return services;
+        }   
     }
 }
