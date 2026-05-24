@@ -5,8 +5,20 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    depends_on:
+      - postgresql
     ports:
       - 8080:8080
+  frontend:
+    image: frontend
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    depends_on:
+      - backend
+    ports:
+      - 3000:80
   postgresql:
     image: postgres:14.23-alpine3.23
     container_name: postgresql
