@@ -1,3 +1,5 @@
+import './ContactsHero.css'
+
 export function ContactsHero({ onAdd, onReload }) {
   return (
     <section className="hero-panel">

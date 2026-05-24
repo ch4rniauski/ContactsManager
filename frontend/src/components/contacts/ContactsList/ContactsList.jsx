@@ -1,12 +1,11 @@
-import { ContactCard } from './ContactCard'
+import './ContactsList.css'
+import { ContactCard } from '../ContactCard/ContactCard'
 
 export function ContactsList({
   contacts,
   loading,
   selectedContactId,
   onSelectContact,
-  onEditContact,
-  onDeleteContact,
   onCreateContact,
 }) {
   return (
@@ -39,8 +38,6 @@ export function ContactsList({
               contact={contact}
               isSelected={contact.id === selectedContactId}
               onSelect={() => onSelectContact(contact.id)}
-              onEdit={() => onEditContact(contact)}
-              onDelete={() => onDeleteContact(contact)}
             />
           ))}
         </div>

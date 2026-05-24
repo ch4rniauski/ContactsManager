@@ -1,3 +1,5 @@
+import './ContactCard.css'
+
 export function ContactCard({ contact, isSelected, onSelect }) {
   return (
     <article className={`contact-card${isSelected ? ' is-selected' : ''}`}>

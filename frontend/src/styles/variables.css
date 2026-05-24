@@ -1,0 +1,22 @@
+:root {
+  --bg: #f6f1ea;
+  --surface: rgba(255, 255, 255, 0.78);
+  --text: #172033;
+  --muted: #5b6476;
+  --border: rgba(25, 35, 55, 0.1);
+  --accent: #f97316;
+  --accent-2: #0f766e;
+  --shadow: 0 30px 80px rgba(12, 18, 30, 0.12);
+  --font-sans: 'Avenir Next', 'Segoe UI', 'Helvetica Neue', 'Noto Sans', sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1724;
+    --surface: rgba(17, 25, 38, 0.84);
+    --text: #eef2f7;
+    --muted: #9aa6b9;
+    --border: rgba(255, 255, 255, 0.1);
+    --shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+  }
+}

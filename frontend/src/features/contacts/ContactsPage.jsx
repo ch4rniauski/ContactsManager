@@ -1,9 +1,9 @@
 import { ConfirmDialog } from '../../components/ConfirmDialog'
 import { ContactModal } from '../../components/ContactModal'
 import { getInitialFormValues, formatBirthDate } from './contactsHelpers'
-import { ContactsHero } from './components/ContactsHero'
-import { ContactsList } from './components/ContactsList'
-import { ContactDetails } from './components/ContactDetails'
+import { ContactsHero } from '../../components/contacts/ContactsHero/ContactsHero'
+import { ContactsList } from '../../components/contacts/ContactsList/ContactsList'
+import { ContactDetails } from '../../components/contacts/ContactDetails/ContactDetails'
 import { useContactsManager } from './hooks/useContactsManager'
 
 export function ContactsPage() {
@@ -25,7 +25,6 @@ export function ContactsPage() {
   return (
     <main className="app-shell">
       <ContactsHero
-        stats={manager.stats}
         onAdd={manager.openCreateModal}
         onReload={manager.handleReload}
       />
@@ -40,8 +39,6 @@ export function ContactsPage() {
           loading={manager.loading}
           selectedContactId={manager.selectedContactId}
           onSelectContact={manager.setSelectedContactId}
-          onEditContact={manager.openEditModal}
-          onDeleteContact={manager.askDelete}
           onCreateContact={manager.openCreateModal}
         />
 

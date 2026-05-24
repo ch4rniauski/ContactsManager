@@ -35,20 +35,6 @@ export function useContactsManager() {
     return contacts.find((contact) => contact.id === selectedContactId) ?? null
   }, [contacts, selectedContactId])
 
-  const stats = useMemo(() => {
-    const jobTitles = new Set(
-      contacts
-        .map((contact) => contact.jobTitle.trim())
-        .filter((jobTitle) => jobTitle.length > 0),
-    )
-
-    return {
-      total: contacts.length,
-      withBirthDate: contacts.filter((contact) => contact.birthDate).length,
-      uniqueRoles: jobTitles.size,
-    }
-  }, [contacts])
-
   useEffect(() => {
     const abortController = new AbortController()
 
@@ -224,7 +210,6 @@ export function useContactsManager() {
     error,
     sortedContacts,
     selectedContact,
-    stats,
     isModalOpen,
     editingContact,
     modalError,

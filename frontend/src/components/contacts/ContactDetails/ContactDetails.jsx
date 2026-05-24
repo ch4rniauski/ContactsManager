@@ -1,3 +1,5 @@
+import './ContactDetails.css'
+
 export function ContactDetails({ contact, onEdit, onDelete }) {
   return (
     <aside className="panel detail-panel">
