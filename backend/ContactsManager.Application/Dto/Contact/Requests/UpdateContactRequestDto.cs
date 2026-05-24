@@ -4,5 +4,5 @@ public sealed record UpdateContactRequestDto(
     string Name,
     string MobilePhone,
     string JobTitle,
-    DateOnly BirthDate);
+    DateOnly? BirthDate);
     

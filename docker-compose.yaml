@@ -1,0 +1,22 @@
+services:
+  backend:
+    image: backend
+    container_name: backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+  postgresql:
+    image: postgres:14.23-alpine3.23
+    container_name: postgresql
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=Contacts
+    volumes:
+      - postgres-contacts:/var/lib/postgresql/data
+volumes:
+  postgres-contacts:

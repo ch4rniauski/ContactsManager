@@ -10,5 +10,5 @@ public class ContactEntity
 
     public string JobTitle { get; set; } = string.Empty;
 
-    public DateOnly BirthDate { get; set; }
+    public DateOnly? BirthDate { get; set; }
 }

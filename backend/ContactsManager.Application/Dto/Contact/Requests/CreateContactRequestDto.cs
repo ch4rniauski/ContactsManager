@@ -4,4 +4,4 @@ public sealed record CreateContactRequestDto(
     string Name,
     string MobilePhone,
     string JobTitle,
-    DateOnly BirthDate);
+    DateOnly? BirthDate);
