@@ -111,7 +111,7 @@ export function ContactModal({
         ) : null}
 
         <label className="field">
-          <span>Имя</span>
+          <span>Имя *</span>
           <input
             type="text"
             name="name"
@@ -125,7 +125,7 @@ export function ContactModal({
         </label>
 
         <label className="field">
-          <span>MobilePhone</span>
+          <span>Номер телефона *</span>
           <input
             type="tel"
             name="mobilePhone"
@@ -133,13 +133,13 @@ export function ContactModal({
             value={values.mobilePhone}
             onBlur={() => markTouched('mobilePhone')}
             onChange={(event) => updateField('mobilePhone', event.target.value)}
-            placeholder="+7 (999) 123-45-67"
+            placeholder="+375 (29) 123-45-67"
           />
           {fieldErrors.mobilePhone ? <small>{fieldErrors.mobilePhone}</small> : null}
         </label>
 
         <label className="field">
-          <span>JobTitle</span>
+          <span>Должность</span>
           <input
             type="text"
             name="jobTitle"
@@ -147,13 +147,13 @@ export function ContactModal({
             value={values.jobTitle}
             onBlur={() => markTouched('jobTitle')}
             onChange={(event) => updateField('jobTitle', event.target.value)}
-            placeholder="Например, Senior Frontend Developer"
+            placeholder="Например, Frontend Developer"
           />
           {fieldErrors.jobTitle ? <small>{fieldErrors.jobTitle}</small> : null}
         </label>
 
         <label className="field">
-          <span>BirthDate</span>
+          <span>Дата рождения</span>
           <input
             type="date"
             name="birthDate"
@@ -161,7 +161,6 @@ export function ContactModal({
             onBlur={() => markTouched('birthDate')}
             onChange={(event) => updateField('birthDate', event.target.value)}
           />
-          <small>Поле необязательное. Нельзя указать будущую дату.</small>
           {fieldErrors.birthDate ? <small>{fieldErrors.birthDate}</small> : null}
         </label>
       </form>

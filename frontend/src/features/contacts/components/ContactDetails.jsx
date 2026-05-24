@@ -3,7 +3,6 @@ export function ContactDetails({ contact, onEdit, onDelete }) {
     <aside className="panel detail-panel">
       <div className="panel-header">
         <div>
-          <p className="panel-kicker">Карточка</p>
           <h2>Выбранный контакт</h2>
         </div>
       </div>
@@ -12,17 +11,17 @@ export function ContactDetails({ contact, onEdit, onDelete }) {
         <div className="selected-contact">
           <div className="avatar">{contact.name.slice(0, 1)}</div>
           <div className="selected-contact__body">
-            <h3>{contact.name}</h3>
+            <h2>{contact.name}</h2>
             <p>{contact.jobTitle}</p>
           </div>
 
           <dl className="detail-grid">
             <div>
-              <dt>MobilePhone</dt>
+              <dt>Номер телефона</dt>
               <dd>{contact.mobilePhone}</dd>
             </div>
             <div>
-              <dt>BirthDate</dt>
+              <dt>Дата рождения</dt>
               <dd>{contact.birthDateLabel}</dd>
             </div>
           </dl>

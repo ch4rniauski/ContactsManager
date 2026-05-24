@@ -43,7 +43,6 @@ export function Dialog({
       >
         <header className="modal-header">
           <div>
-            <p className="panel-kicker">Попап</p>
             <h3 id="dialog-title">{title}</h3>
             {description ? (
               <p id="dialog-description" className="modal-description">

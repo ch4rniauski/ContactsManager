@@ -1,4 +1,3 @@
-const NAME_PATTERN = /^[\p{L}\p{M}][\p{L}\p{M}'’\s-]{1,59}$/u
 const PHONE_PATTERN = /^[+]?([\d\s()-]){7,20}$/
 const JOB_TITLE_PATTERN = /^[\p{L}\p{M}\d][\p{L}\p{M}\d.,&'’/\s-]{1,79}$/u
 
@@ -24,8 +23,6 @@ export function validateContactForm(values) {
 
   if (values.name.trim().length === 0) {
     errors.name = 'Имя обязательно'
-  } else if (!NAME_PATTERN.test(values.name.trim())) {
-    errors.name = 'Введите имя из букв, пробелов, дефиса или апострофа'
   }
 
   if (values.mobilePhone.trim().length === 0) {
@@ -34,9 +31,7 @@ export function validateContactForm(values) {
     errors.mobilePhone = 'Используйте цифры, пробелы, скобки, дефисы или +'
   }
 
-  if (values.jobTitle.trim().length === 0) {
-    errors.jobTitle = 'Должность обязательна'
-  } else if (!JOB_TITLE_PATTERN.test(values.jobTitle.trim())) {
+  if (values.jobTitle.trim().length > 0 && !JOB_TITLE_PATTERN.test(values.jobTitle.trim())) {
     errors.jobTitle = 'Введите корректное название должности'
   }
 

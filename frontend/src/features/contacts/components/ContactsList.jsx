@@ -13,7 +13,6 @@ export function ContactsList({
     <section className="panel list-panel">
       <div className="panel-header">
         <div>
-          <p className="panel-kicker">Список</p>
           <h2>Контакты</h2>
         </div>
 

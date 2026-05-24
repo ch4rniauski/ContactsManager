@@ -36,9 +36,6 @@ export function ConfirmDialog({
         </footer>
       }
     >
-      <div className="confirm-body">
-        <p>{description}</p>
-      </div>
     </Dialog>
   )
 }
