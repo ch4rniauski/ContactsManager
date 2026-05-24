@@ -13,34 +13,34 @@ internal sealed class ContactRepository : IContactRepository
         _context = context;
     }
 
-    public async Task<IList<ContactEntity>> GetAllAsync(CancellationToken ct = default)
+    public async Task<IList<ContactEntity>> GetAllAsync(CancellationToken cancellationToken = default)
     {
         return await _context.Contacts
             .AsNoTracking()
-            .ToListAsync(ct);
+            .ToListAsync(cancellationToken);
     }
 
-    public async Task<ContactEntity?> GetByIdAsync(Guid id, CancellationToken ct = default)
-        => await _context.Contacts.FindAsync([id], ct);
+    public async Task<ContactEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        => await _context.Contacts.FindAsync([id], cancellationToken);
 
-    public async Task<bool> AddAsync(ContactEntity contact, CancellationToken ct = default)
+    public async Task<bool> AddAsync(ContactEntity contact, CancellationToken cancellationToken = default)
     {
-        await _context.Contacts.AddAsync(contact, ct);
+        await _context.Contacts.AddAsync(contact, cancellationToken);
         
-        return await _context.SaveChangesAsync(ct) > 0;
+        return await _context.SaveChangesAsync(cancellationToken) > 0;
     }
 
-    public async Task<bool> UpdateAsync(ContactEntity contact, CancellationToken ct = default)
+    public async Task<bool> UpdateAsync(ContactEntity contact, CancellationToken cancellationToken = default)
     {
         _context.Update(contact);
         
-        return await _context.SaveChangesAsync(ct) > 0;
+        return await _context.SaveChangesAsync(cancellationToken) > 0;
     }
 
-    public async Task<bool> DeleteAsync(Guid id, CancellationToken ct = default)
+    public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken = default)
     {
         return await _context.Contacts
             .Where(c => c.Id == id)
-            .ExecuteDeleteAsync(ct) > 0;
+            .ExecuteDeleteAsync(cancellationToken) > 0;
     }
 }

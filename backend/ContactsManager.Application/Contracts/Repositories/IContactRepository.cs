@@ -4,13 +4,13 @@ namespace ContactsManager.Application.Contracts.Repositories;
 
 public interface IContactRepository
 {
-    Task<IList<ContactEntity>> GetAllAsync(CancellationToken ct = default);
+    Task<IList<ContactEntity>> GetAllAsync(CancellationToken cancellationToken = default);
 
-    Task<ContactEntity?> GetByIdAsync(Guid id, CancellationToken ct = default);
+    Task<ContactEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
 
-    Task<bool> AddAsync(ContactEntity contact, CancellationToken ct = default);
+    Task<bool> AddAsync(ContactEntity contact, CancellationToken cancellationToken = default);
 
-    Task<bool> UpdateAsync(ContactEntity contact, CancellationToken ct = default);
+    Task<bool> UpdateAsync(ContactEntity contact, CancellationToken cancellationToken = default);
 
-    Task<bool> DeleteAsync(Guid id, CancellationToken ct = default);
+    Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken = default);
 }
