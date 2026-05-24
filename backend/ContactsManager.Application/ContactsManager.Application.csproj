@@ -18,10 +18,12 @@
 
     <ItemGroup>
       <Folder Include="Contracts\Repositories\" />
+      <Folder Include="Dto\Contact\" />
       <Folder Include="UseCases\CommandHandlers\Contact\" />
       <Folder Include="UseCases\Commands\Contact\" />
       <Folder Include="UseCases\Queries\Contact\" />
       <Folder Include="UseCases\QueriyHandlers\Contact\" />
+      <Folder Include="Validators\Contact\" />
     </ItemGroup>
 
 </Project>

@@ -1,11 +1,15 @@
 using ContactsManager.Api.Extensions;
+using ContactsManager.Application.Extensions;
 using ContactsManager.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddContactsContextConfiguration(builder.Configuration);
+builder.Services
+    .AddContactsContextConfiguration(builder.Configuration)
+    .AddMediatrConfiguration()
+    .AddValidationConfiguration();
 
 var app = builder.Build();
 
