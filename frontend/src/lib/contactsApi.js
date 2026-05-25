@@ -1,9 +1,7 @@
 import axios from 'axios'
 
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? '').replace(/\/$/, '')
-
 const apiClient = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: 'http://backend:8080',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -20,7 +18,9 @@ async function request(path, options = {}) {
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw new Error(
-        error.response?.data ?? error.message ?? 'Запрос к серверу завершился ошибкой',
+        error.response?.data
+        ?? error.message
+        ?? 'Запрос к серверу завершился ошибкой',
         { cause: error },
       )
     }
