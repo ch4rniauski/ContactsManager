@@ -21,9 +21,12 @@ export function ContactsList({
         <span className="panel-count">{contacts.length}</span>
       </div>
 
-      {loading ? <div className="empty-state">Загружаем контакты...</div> : null}
+      { loading
+          ? <div className="empty-state">Загружаем контакты...</div>
+          : null
+      }
 
-      {!loading && contacts.length === 0 ? (
+      { !loading && contacts.length === 0 ? (
         <div className="empty-state">
           {hasSearchText ? (
             <>
@@ -42,7 +45,7 @@ export function ContactsList({
         </div>
       ) : null}
 
-      {!loading && contacts.length > 0 ? (
+      { !loading && contacts.length > 0 ? (
         <div className="contact-list" role="list">
           {contacts.map((contact) => (
             <ContactCard

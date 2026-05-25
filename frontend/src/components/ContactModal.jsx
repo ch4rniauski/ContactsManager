@@ -77,9 +77,11 @@ export function ContactModal({
   return (
     <Dialog
       isOpen={isOpen}
-      title={mode === 'edit' ? 'Редактировать контакт' : 'Новый контакт'}
-      description={
-        mode === 'edit'
+      title={ mode === 'edit'
+          ? 'Редактировать контакт'
+          : 'Новый контакт'
+      }
+      description={ mode === 'edit'
           ? 'Измените данные выбранного контакта и сохраните результат.'
           : 'Заполните карточку контакта и добавьте запись в базу.'
       }
@@ -121,7 +123,7 @@ export function ContactModal({
             onChange={(event) => updateField('name', event.target.value)}
             placeholder="Например, Анна Иванова"
           />
-          {fieldErrors.name ? <small>{fieldErrors.name}</small> : null}
+          { fieldErrors.name ? <small>{fieldErrors.name}</small> : null }
         </label>
 
         <label className="field">
@@ -135,7 +137,7 @@ export function ContactModal({
             onChange={(event) => updateField('mobilePhone', event.target.value)}
             placeholder="+375 (29) 123-45-67"
           />
-          {fieldErrors.mobilePhone ? <small>{fieldErrors.mobilePhone}</small> : null}
+          { fieldErrors.mobilePhone ? <small>{fieldErrors.mobilePhone}</small> : null }
         </label>
 
         <label className="field">
@@ -149,7 +151,7 @@ export function ContactModal({
             onChange={(event) => updateField('jobTitle', event.target.value)}
             placeholder="Например, Frontend Developer"
           />
-          {fieldErrors.jobTitle ? <small>{fieldErrors.jobTitle}</small> : null}
+          { fieldErrors.jobTitle ? <small>{fieldErrors.jobTitle}</small> : null }
         </label>
 
         <label className="field">
@@ -161,7 +163,7 @@ export function ContactModal({
             onBlur={() => markTouched('birthDate')}
             onChange={(event) => updateField('birthDate', event.target.value)}
           />
-          {fieldErrors.birthDate ? <small>{fieldErrors.birthDate}</small> : null}
+          { fieldErrors.birthDate ? <small>{fieldErrors.birthDate}</small> : null }
         </label>
       </form>
     </Dialog>

@@ -9,7 +9,7 @@ export function ContactDetails({ contact, onEdit, onDelete }) {
         </div>
       </div>
 
-      {contact != null ? (
+      { contact != null ? (
         <div className="selected-contact">
           <div className="avatar">{contact.name.slice(0, 1)}</div>
           <div className="selected-contact__body">

@@ -31,7 +31,7 @@ export function ConfirmDialog({
             onClick={onConfirm}
             disabled={isConfirming}
           >
-            {isConfirming ? 'Удаление...' : confirmLabel}
+            { isConfirming ? 'Удаление...' : confirmLabel }
           </button>
         </footer>
       }

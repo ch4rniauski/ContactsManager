@@ -38,7 +38,7 @@ async function request(path, options = {}) {
 
 export async function fetchContacts(searchText = '', signal) {
   const normalizedSearchText = searchText.trim()
-  const path = normalizedSearchText.length > 0 ? '/сontacts/search' : '/сontacts'
+  const path = normalizedSearchText.length > 0 ? '/contacts/search' : '/contacts'
   const config =
     normalizedSearchText.length > 0
       ? {
@@ -61,7 +61,7 @@ export async function fetchContacts(searchText = '', signal) {
 }
 
 export async function createContact(contact) {
-  return request('/сontacts', {
+  return request('/contacts', {
     method: 'POST',
     body: JSON.stringify(contact),
     data: contact,
@@ -69,14 +69,14 @@ export async function createContact(contact) {
 }
 
 export async function updateContact(contactId, contact) {
-  return request(`/сontacts/${contactId}`, {
+  return request(`/contacts/${contactId}`, {
     method: 'PUT',
     data: contact,
   })
 }
 
 export async function deleteContact(contactId) {
-  return request(`/сontacts/${contactId}`, {
+  return request(`/contacts/${contactId}`, {
     method: 'DELETE',
   })
 }

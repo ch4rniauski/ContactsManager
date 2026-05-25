@@ -6,7 +6,7 @@
     radial-gradient(circle at top left, rgba(15, 118, 110, 0.12), transparent 30%),
     radial-gradient(circle at top right, rgba(249, 115, 22, 0.14), transparent 28%),
     linear-gradient(180deg, #fbf7f2 0%, #f4ede4 100%);
-  font-family: var(--font-sans);
+  font-family: var(--font-sans), serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

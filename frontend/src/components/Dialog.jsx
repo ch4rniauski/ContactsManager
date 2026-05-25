@@ -45,7 +45,7 @@ export function Dialog({
         <header className="modal-header">
           <div>
             <h3 id="dialog-title">{title}</h3>
-            {description ? (
+            { description ? (
               <p id="dialog-description" className="modal-description">
                 {description}
               </p>
