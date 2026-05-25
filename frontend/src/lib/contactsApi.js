@@ -17,21 +17,28 @@ async function request(path, options = {}) {
     return response.data ?? null
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      throw new Error(
+      const wrappedError = new Error(
         error.response?.data
-        ?? error.message
-        ?? 'Запрос к серверу завершился ошибкой',
-        { cause: error },
+          ?? error.message
+          ?? 'Запрос к серверу завершился ошибкой',
       )
+
+      wrappedError.cause = error
+
+      throw wrappedError
     }
 
-    throw new Error('Запрос к серверу завершился ошибкой', { cause: error })
+    const wrappedError = new Error('Запрос к серверу завершился ошибкой')
+
+    wrappedError.cause = error
+
+    throw wrappedError
   }
 }
 
 export async function fetchContacts(searchText = '', signal) {
   const normalizedSearchText = searchText.trim()
-  const path = normalizedSearchText.length > 0 ? '/Contacts/search' : '/Contacts'
+  const path = normalizedSearchText.length > 0 ? '/сontacts/search' : '/сontacts'
   const config =
     normalizedSearchText.length > 0
       ? {
@@ -54,7 +61,7 @@ export async function fetchContacts(searchText = '', signal) {
 }
 
 export async function createContact(contact) {
-  return request('/Contacts', {
+  return request('/сontacts', {
     method: 'POST',
     body: JSON.stringify(contact),
     data: contact,
@@ -62,14 +69,14 @@ export async function createContact(contact) {
 }
 
 export async function updateContact(contactId, contact) {
-  return request(`/Contacts/${contactId}`, {
+  return request(`/сontacts/${contactId}`, {
     method: 'PUT',
     data: contact,
   })
 }
 
 export async function deleteContact(contactId) {
-  return request(`/Contacts/${contactId}`, {
+  return request(`/сontacts/${contactId}`, {
     method: 'DELETE',
   })
 }
