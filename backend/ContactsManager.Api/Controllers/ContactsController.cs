@@ -33,6 +33,22 @@ public class ContactsController : ControllerBase
                 statusCode: err.StatusCode));
     }
 
+    [HttpGet("search")]
+    public async Task<ActionResult<IList<ContactEntity>>> SearchContacts(
+        [FromQuery] SearchContactsRequestDto request,
+        CancellationToken cancellationToken)
+    {
+        var query = new SearchContactsQuery(request.SearchText);
+
+        var result = await _mediator.Send(query, cancellationToken);
+
+        return result.Match(
+            onSuccess: Ok,
+            onFailure: err => Problem(
+                detail: err.Description,
+                statusCode: err.StatusCode));
+    }
+
     [HttpGet("{id:guid}")]
     public async Task<ActionResult<ContactEntity>> GetContactById(Guid id, CancellationToken cancellationToken)
     {

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
   createContact,
   deleteContact,
@@ -12,12 +12,64 @@ export function useContactsManager() {
   const [selectedContactId, setSelectedContactId] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [searchText, setSearchText] = useState('')
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [editingContact, setEditingContact] = useState(null)
   const [modalError, setModalError] = useState('')
   const [isSaving, setIsSaving] = useState(false)
   const [contactToDelete, setContactToDelete] = useState(null)
   const [isDeleting, setIsDeleting] = useState(false)
+
+  const loadContacts = useCallback(
+    async (queryText = '', preferredContactId = null, signal) => {
+      setLoading(true)
+      setError('')
+
+      const normalizedSearchText = queryText.trim()
+
+      try {
+        const data = await fetchContacts(normalizedSearchText, signal)
+
+        setContacts(data)
+        setSelectedContactId((currentSelectedId) => {
+          if (data.length === 0) {
+            return null
+          }
+
+          if (
+            preferredContactId != null &&
+            data.some((contact) => contact.id === preferredContactId)
+          ) {
+            return preferredContactId
+          }
+
+          if (
+            currentSelectedId != null &&
+            data.some((contact) => contact.id === currentSelectedId)
+          ) {
+            return currentSelectedId
+          }
+
+          return data[0].id
+        })
+      } catch (loadError) {
+        if (signal?.aborted) {
+          return
+        }
+
+        setError(
+          loadError instanceof Error
+            ? loadError.message
+            : 'Не удалось загрузить контакты',
+        )
+      } finally {
+        if (!signal?.aborted) {
+          setLoading(false)
+        }
+      }
+    },
+    [],
+  )
 
   const sortedContacts = useMemo(() => {
     return [...contacts].sort((left, right) => {
@@ -37,51 +89,19 @@ export function useContactsManager() {
 
   useEffect(() => {
     const abortController = new AbortController()
-
-    async function loadContacts() {
-      setLoading(true)
-      setError('')
-
-      try {
-        const data = await fetchContacts(abortController.signal)
-        setContacts(data)
-        setSelectedContactId((currentSelectedId) => {
-          if (data.length === 0) {
-            return null
-          }
-
-          if (
-            currentSelectedId != null &&
-            data.some((contact) => contact.id === currentSelectedId)
-          ) {
-            return currentSelectedId
-          }
-
-          return data[0].id
-        })
-      } catch (loadError) {
-        if (abortController.signal.aborted) {
-          return
-        }
-
-        setError(
-          loadError instanceof Error
-            ? loadError.message
-            : 'Не удалось загрузить контакты',
-        )
-      } finally {
-        if (!abortController.signal.aborted) {
-          setLoading(false)
-        }
-      }
-    }
-
-    loadContacts()
+    const isInitialLoad = searchText.trim().length === 0
+    const timerId = window.setTimeout(
+      () => {
+        void loadContacts(searchText, null, abortController.signal)
+      },
+      isInitialLoad ? 0 : 250,
+    )
 
     return () => {
+      window.clearTimeout(timerId)
       abortController.abort()
     }
-  }, [])
+  }, [loadContacts, searchText])
 
   function openCreateModal() {
     setEditingContact(null)
@@ -117,14 +137,7 @@ export function useContactsManager() {
         ? await updateContact(editingContact.id, payload)
         : await createContact(payload)
 
-      setContacts((currentContacts) => {
-        const nextContacts = currentContacts.filter(
-          (contact) => contact.id !== savedContact.id,
-        )
-
-        return [...nextContacts, savedContact]
-      })
-      setSelectedContactId(savedContact.id)
+      await loadContacts(searchText, savedContact.id)
       setIsModalOpen(false)
       setEditingContact(null)
     } catch (saveError) {
@@ -159,17 +172,7 @@ export function useContactsManager() {
     try {
       await deleteContact(contactId)
 
-      setContacts((currentContacts) => {
-        const nextContacts = currentContacts.filter(
-          (contact) => contact.id !== contactId,
-        )
-
-        if (selectedContactId === contactId) {
-          setSelectedContactId(nextContacts[0]?.id ?? null)
-        }
-
-        return nextContacts
-      })
+      await loadContacts(searchText)
       setContactToDelete(null)
     } catch (deleteError) {
       setError(
@@ -183,31 +186,18 @@ export function useContactsManager() {
   }
 
   function handleReload() {
-    setSelectedContactId(null)
-    setLoading(true)
-    setError('')
+    void loadContacts(searchText)
+  }
 
-    fetchContacts()
-      .then((data) => {
-        setContacts(data)
-        setSelectedContactId(data[0]?.id ?? null)
-      })
-      .catch((loadError) => {
-        setError(
-          loadError instanceof Error
-            ? loadError.message
-            : 'Не удалось загрузить контакты',
-        )
-      })
-      .finally(() => {
-        setLoading(false)
-      })
+  function handleSearchTextChange(value) {
+    setSearchText(value)
   }
 
   return {
     selectedContactId,
     loading,
     error,
+    searchText,
     sortedContacts,
     selectedContact,
     isModalOpen,
@@ -224,6 +214,7 @@ export function useContactsManager() {
     closeDeleteDialog,
     confirmDelete,
     handleReload,
+    handleSearchTextChange,
     setSelectedContactId,
   }
 }

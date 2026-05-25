@@ -20,20 +20,33 @@ internal sealed class ContactRepository : IContactRepository
             .ToListAsync(cancellationToken);
     }
 
+    public async Task<IList<ContactEntity>> SearchAsync(string searchText, CancellationToken cancellationToken = default)
+    {
+        var normalizedSearchText = searchText.Trim();
+        var pattern = $"%{normalizedSearchText}%";
+
+        return await _context.Contacts
+            .AsNoTracking()
+            .Where(c => 
+                EF.Functions.ILike(c.Name, pattern) || 
+                EF.Functions.Like(c.MobilePhone, pattern))
+            .ToListAsync(cancellationToken);
+    }
+
     public async Task<ContactEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         => await _context.Contacts.FindAsync([id], cancellationToken);
 
     public async Task<bool> AddAsync(ContactEntity contact, CancellationToken cancellationToken = default)
     {
         await _context.Contacts.AddAsync(contact, cancellationToken);
-        
+
         return await _context.SaveChangesAsync(cancellationToken) > 0;
     }
 
     public async Task<bool> UpdateAsync(ContactEntity contact, CancellationToken cancellationToken = default)
     {
         _context.Update(contact);
-        
+
         return await _context.SaveChangesAsync(cancellationToken) > 0;
     }
 

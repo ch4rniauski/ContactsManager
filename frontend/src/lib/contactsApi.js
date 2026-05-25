@@ -21,8 +21,14 @@ async function request(path, options = {}) {
   return response.json()
 }
 
-export async function fetchContacts(signal) {
-  const contacts = await request('/Contacts', { signal })
+export async function fetchContacts(searchText = '', signal) {
+  const normalizedSearchText = searchText.trim()
+  const path =
+    normalizedSearchText.length > 0
+      ? `/Contacts/search?searchText=${encodeURIComponent(normalizedSearchText)}`
+      : '/Contacts'
+
+  const contacts = await request(path, { signal })
 
   return contacts.map((contact) => ({
     ...contact,

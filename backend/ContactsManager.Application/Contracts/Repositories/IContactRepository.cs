@@ -6,6 +6,8 @@ public interface IContactRepository
 {
     Task<IList<ContactEntity>> GetAllAsync(CancellationToken cancellationToken = default);
 
+    Task<IList<ContactEntity>> SearchAsync(string searchText, CancellationToken cancellationToken = default);
+
     Task<ContactEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
 
     Task<bool> AddAsync(ContactEntity contact, CancellationToken cancellationToken = default);

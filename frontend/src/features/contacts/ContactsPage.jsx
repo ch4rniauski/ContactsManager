@@ -25,6 +25,8 @@ export function ContactsPage() {
   return (
     <main className="app-shell">
       <ContactsHero
+        searchText={manager.searchText}
+        onSearchTextChange={manager.handleSearchTextChange}
         onAdd={manager.openCreateModal}
         onReload={manager.handleReload}
       />
@@ -37,6 +39,7 @@ export function ContactsPage() {
         <ContactsList
           contacts={contactsWithLabels}
           loading={manager.loading}
+          searchText={manager.searchText}
           selectedContactId={manager.selectedContactId}
           onSelectContact={manager.setSelectedContactId}
           onCreateContact={manager.openCreateModal}
