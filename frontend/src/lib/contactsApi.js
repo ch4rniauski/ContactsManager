@@ -1,6 +1,8 @@
 import axios from 'axios'
 
 const apiClient = axios.create({
+  // При локальном развертывании baseURL: 'http://localhost:5109'
+  // При развертывании в Docker baseURL: 'http://127.0.0.1:8080'
   baseURL: 'http://127.0.0.1:8080',
   headers: {
     'Content-Type': 'application/json',
