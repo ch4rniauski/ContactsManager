@@ -1,34 +1,48 @@
+import axios from 'axios'
+
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? '').replace(/\/$/, '')
 
+const apiClient = axios.create({
+  baseURL: API_BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+})
+
 async function request(path, options = {}) {
-  const response = await fetch(`${API_BASE_URL}${path}`, {
-    headers: {
-      'Content-Type': 'application/json',
-      ...(options.headers ?? {}),
-    },
-    ...options,
-  })
+  try {
+    const response = await apiClient.request({
+      url: path,
+      ...options,
+    })
 
-  if (!response.ok) {
-    const responseText = await response.text()
-    throw new Error(responseText || 'Запрос к серверу завершился ошибкой')
+    return response.data ?? null
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(
+        error.response?.data ?? error.message ?? 'Запрос к серверу завершился ошибкой',
+        { cause: error },
+      )
+    }
+
+    throw new Error('Запрос к серверу завершился ошибкой', { cause: error })
   }
-
-  if (response.status === 204) {
-    return null
-  }
-
-  return response.json()
 }
 
 export async function fetchContacts(searchText = '', signal) {
   const normalizedSearchText = searchText.trim()
-  const path =
+  const path = normalizedSearchText.length > 0 ? '/Contacts/search' : '/Contacts'
+  const config =
     normalizedSearchText.length > 0
-      ? `/Contacts/search?searchText=${encodeURIComponent(normalizedSearchText)}`
-      : '/Contacts'
+      ? {
+          params: {
+            searchText: normalizedSearchText,
+          },
+          signal,
+        }
+      : { signal }
 
-  const contacts = await request(path, { signal })
+  const contacts = await request(path, config)
 
   return contacts.map((contact) => ({
     ...contact,
@@ -43,13 +57,14 @@ export async function createContact(contact) {
   return request('/Contacts', {
     method: 'POST',
     body: JSON.stringify(contact),
+    data: contact,
   })
 }
 
 export async function updateContact(contactId, contact) {
   return request(`/Contacts/${contactId}`, {
     method: 'PUT',
-    body: JSON.stringify(contact),
+    data: contact,
   })
 }
 

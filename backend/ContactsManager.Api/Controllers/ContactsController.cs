@@ -35,10 +35,10 @@ public class ContactsController : ControllerBase
 
     [HttpGet("search")]
     public async Task<ActionResult<IList<ContactEntity>>> SearchContacts(
-        [FromQuery] SearchContactsRequestDto request,
+        [FromQuery] string searchText,
         CancellationToken cancellationToken)
     {
-        var query = new SearchContactsQuery(request.SearchText);
+        var query = new SearchContactsQuery(searchText);
 
         var result = await _mediator.Send(query, cancellationToken);
 
